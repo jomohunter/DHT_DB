@@ -24,16 +24,6 @@
 
 namespace dht {
 
-// One known peer. POD-ish on purpose: routing logic manipulates contacts,
-// networking logic turns them into socket addresses.
-struct Contact {
-    NodeId id{};
-    std::string ip;
-    std::uint16_t port{0};
-
-    bool operator==(const Contact& other) const { return id == other.id; }
-};
-
 // A single k-bucket: a bounded list of contacts, ordered least-recently-seen
 // first. Does not know its own index — the RoutingTable decides placement.
 class KBucket {
